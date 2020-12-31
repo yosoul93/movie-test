@@ -1,4 +1,4 @@
-<div class="movie-details" [@blockInitialRenderAnimation]>
+<div class="movie-details" [@.disabled]="_movieService.isPageReload">
   
   <div *ngIf="loading" class="wrap-loading">
     <mat-spinner></mat-spinner>
@@ -8,7 +8,7 @@
     <div *ngIf="!loading">
     
       <div class="header">
-        <a class="header-link" [routerLink]="'/movie'" >
+        <a class="header-link" [routerLink]="'/movies'" >
     
           <button mat-icon-button class="arrow-back-icon">
             <mat-icon>arrow_back</mat-icon>

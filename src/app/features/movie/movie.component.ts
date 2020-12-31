@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { MovieService } from './movie.service';
 import { Movie } from 'src/app/shared/models/movie.interface';
 import { Animations } from 'src/app/shared/animations';
@@ -13,10 +13,13 @@ export class MovieComponent implements OnInit {
 
   inputTouched: boolean = false;
   loading: boolean = false;
+  // @HostBinding('@.disabled')
   movies: Movie[] = [];
 
+
+  
   constructor(
-    private _movieService: MovieService
+    public _movieService: MovieService
   ) { }
 
   ngOnInit(): void {

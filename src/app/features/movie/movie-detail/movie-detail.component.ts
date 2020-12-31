@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetails } from 'src/app/shared/models/movie-details.interface';
@@ -18,13 +18,12 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   movieDetails!: MovieDetails;
   imgUrl: string = environment.imgUrl;
-  @Input() isFavorited!: boolean;
-  @Output() isFavoritedChange = new EventEmitter<boolean>();
+  isFavorited!: boolean;
 
   private _unsubscribeAll: Subject<any>;
   
   constructor(
-    private _movieService: MovieService,
+    public _movieService: MovieService,
     private route: ActivatedRoute
   ) { 
     this._unsubscribeAll = new Subject();

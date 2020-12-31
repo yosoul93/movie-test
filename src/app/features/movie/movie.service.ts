@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HeaderUtils } from 'src/app/shared/utils/header-utils';
 import { SearchMovies } from 'src/app/shared/models/search-movies.interface';
 import { MovieDetails } from 'src/app/shared/models/movie-details.interface';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable()
 
@@ -13,10 +14,25 @@ export class MovieService {
   
   tempStoreSearchInput: string = '';
   moviesFavoritedList: MovieDetails[] = this.getFavoritedMovie() || [];
-  
+  isPageReload: boolean = false;
+
   constructor(
     private _httpClient: HttpClient,
-  ) { }
+    private router: Router
+  ) { 
+    // detect when the user reload the page
+    // this will be  used to prevent animation
+    this.router.events
+      .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
+      .subscribe(event => {
+        if (event.id === 1 && event.url === event.urlAfterRedirects) {
+          this.isPageReload = true;
+        } else {
+          this.isPageReload = false;
+        }
+      })
+      
+  }
 
   searchMovies(query: string): Observable <any> {
     const url = `${environment.url}search/movie?api_key=${environment.apiKey}&query=${query}`;
@@ -64,6 +80,6 @@ export class MovieService {
   }
 
   getFavoritedMovie(): MovieDetails[] {
-    return JSON.parse(localStorage.getItem('Favorited_Movies') || '');
+    return JSON.parse(localStorage.getItem('Favorited_Movies') || 'null');
   }
 }
