@@ -10,13 +10,12 @@ import { Animations } from 'src/app/shared/animations';
   animations: Animations,
 })
 export class MovieComponent implements OnInit {
-
+  
+  animationDirection: string = 'right';
   inputTouched: boolean = false;
   loading: boolean = false;
   movieList: Movie[] = [];
 
-
-  
   constructor(
     public _movieService: MovieService
   ) { }

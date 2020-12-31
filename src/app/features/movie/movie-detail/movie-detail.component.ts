@@ -15,11 +15,12 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
 
+  animationDirection: string = 'left';
   loading: boolean = true;
   movieDetails!: MovieDetails;
   imgUrl: string = environment.imgUrl;
   isFavorited!: boolean;
-
+  
   private _unsubscribeAll: Subject<any>;
   
   constructor(
@@ -36,12 +37,12 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
           takeUntil(this._unsubscribeAll),
           this.movieDetails = details;
           this.loading = false;
-          this.isMovieInFavoriteList(this.movieDetails, this._movieService.moviesFavoritedList);
+          this.checkIsFavorite(this.movieDetails, this._movieService.moviesFavoritedList);
         });
     });
   }
 
-  toggleFavorited() {
+  toggleFavorited(): void  {
     this.isFavorited = !this.isFavorited;
     if(this.isFavorited){
       this._movieService.addFavoriteMovie(this.movieDetails)
@@ -50,7 +51,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  isMovieInFavoriteList(mvoie: MovieDetails, movieFavoriteList: MovieDetails[]) {
+  checkIsFavorite(mvoie: MovieDetails, movieFavoriteList: MovieDetails[]): boolean {
     for (let x in movieFavoriteList) {
       if (movieFavoriteList[x].id === mvoie.id) {
         return this.isFavorited = true;

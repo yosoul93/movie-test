@@ -26,8 +26,8 @@ export const Animations = [
     )
   ]),
 
-  trigger('slideInLeft', [
-    transition('void => *', [
+  trigger('slideLeftRight', [
+    transition("void => left", [
       style({
         transform: 'translateX(100%)'
       }),
@@ -37,20 +37,8 @@ export const Animations = [
         })
       )
     ]),
-    transition('* => void', [
-      style({
-        transform: 'translateX(0)'
-      }),
-      animate('300ms ease-in',
-        style({
-          transform: 'translateX(-100%)'
-        })
-      )
-    ]),
-  ]),
 
-  trigger('slideInRight', [
-    transition('void => *', [
+    transition("void => right", [
       style({
         transform: 'translateX(-100%)'
       }),
@@ -59,16 +47,6 @@ export const Animations = [
           transform: 'translateX(0)'
         })
       )
-    ]),
-    transition('* => void', [
-      style({
-        transform: 'translateX(0)'
-      }),
-      animate('300ms ease-in',
-        style({
-          transform: 'translateX(100%)'
-        })
-      )
     ])
-  ]),    
+  ]),  
 ];

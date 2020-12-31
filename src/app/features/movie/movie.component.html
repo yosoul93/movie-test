@@ -1,5 +1,5 @@
 <div class="wrap-movie" [@.disabled]="_movieService.isPageReload">
-  <div [@slideInRight]>
+  <div [@slideLeftRight]="animationDirection">
     <app-search-input (search)="handleSearch($event)"></app-search-input>
   
     <div *ngIf="inputTouched && !loading && !movieList.length" class="wrap-not-found">

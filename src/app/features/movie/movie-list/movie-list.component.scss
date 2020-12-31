@@ -1,3 +1,4 @@
 .wrap-movie-list {
-  
+  max-height: calc(90vh - 100px);
+  overflow: auto;
 }

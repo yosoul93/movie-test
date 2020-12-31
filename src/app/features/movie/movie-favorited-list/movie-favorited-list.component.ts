@@ -10,7 +10,8 @@ import { MovieService } from '../movie.service';
   animations: Animations,
 })
 export class MovieFavoritedListComponent implements OnInit {
-
+  
+  animationDirection!: string;
   moviesFavoritedList: MovieDetails[] = [];
   
   constructor(
@@ -18,6 +19,7 @@ export class MovieFavoritedListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.animationDirection = this._movieService.previousNavigationUrl.includes('detail') ? 'right' : 'left';
     this.moviesFavoritedList = this._movieService.moviesFavoritedList;
   }
 

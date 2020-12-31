@@ -11,11 +11,12 @@
   }
 
   .header {
-    cursor: pointer;
 
     .header-link {
       text-decoration: none;
       color: black;
+      cursor: pointer;
+      
       .arrow-back-icon {
         position: relative;
         bottom: 20px;

@@ -12,19 +12,23 @@ import { NavigationEnd, Router } from '@angular/router';
 
 export class MovieService {
   
-  tempStoreSearchInput: string = '';
+  storeSearchInput: string = '';
   moviesFavoritedList: MovieDetails[] = this.getFavoritedMovie() || [];
   isPageReload: boolean = false;
+  previousNavigationUrl: string = '';
+  currentNavigationUrl: string = '/movies';
 
   constructor(
     private _httpClient: HttpClient,
     private router: Router
   ) { 
     // detect when the user reload the page
-    // this will be  used to prevent animation
+    // get previous and current navigation url
     this.router.events
-      .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
-      .subscribe(event => {
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.previousNavigationUrl = this.currentNavigationUrl;
+        this.currentNavigationUrl = event.url;
         if (event.id === 1 && event.url === event.urlAfterRedirects) {
           this.isPageReload = true;
         } else {
@@ -58,24 +62,24 @@ export class MovieService {
       );
   }
   
-  addFavoriteMovie(movie: MovieDetails) {
+  addFavoriteMovie(movie: MovieDetails): void {
     this.moviesFavoritedList.push(movie);
     this.saveFavoritedList();
   }
 
-  deleteFavoriteMovie(movie: MovieDetails) {
+  deleteFavoriteMovie(movie: MovieDetails): void {
     const index = this.moviesFavoritedList.indexOf(movie);
     this.moviesFavoritedList.splice(index, 1);
     this.saveFavoritedList();
   }
 
-  saveFavoritedList() {
+  saveFavoritedList(): void {
     this.setFavoritedMovie('Favorited_Movies', this.moviesFavoritedList);
   }
 
   // We are using localstorage to store and retrieve Favorited Movie
 
-  setFavoritedMovie(key: string, movie: MovieDetails[]) {
+  setFavoritedMovie(key: string, movie: MovieDetails[]): void {
     localStorage.setItem(key, JSON.stringify(movie));
   }
 

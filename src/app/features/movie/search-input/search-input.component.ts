@@ -29,10 +29,10 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     // when we navigate, we will set this
-    if(this._movieService.tempStoreSearchInput) {
-      this.inputElement.nativeElement.value = this._movieService.tempStoreSearchInput;
+    if(this._movieService.storeSearchInput) {
+      this.inputElement.nativeElement.value = this._movieService.storeSearchInput;
       setTimeout(() => {
-        this.search.next(this._movieService.tempStoreSearchInput);
+        this.search.next(this._movieService.storeSearchInput);
       });
     }
     fromEvent(this.inputElement.nativeElement, 'keyup')
@@ -45,7 +45,7 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
       .subscribe(value => {
         let text: string | any = value;
         if (text){
-          this._movieService.tempStoreSearchInput = text;
+          this._movieService.storeSearchInput = text;
           this.search.next(text);
         } 
       });
