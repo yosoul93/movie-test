@@ -26,7 +26,6 @@ export class MovieComponent implements OnInit {
     this.loading = true;
     this._movieService.searchMovies(inputValue)
       .subscribe((items: Movie[]) => {
-        console.log("item:", items)
         this.movies = items.map(item => item);
         this.inputTouched = true;
         this.loading = false;

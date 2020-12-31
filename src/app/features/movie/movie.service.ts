@@ -64,6 +64,6 @@ export class MovieService {
   }
 
   getFavoritedMovie(): MovieDetails[] {
-    return JSON.parse(localStorage.getItem('Favorited_Movies') || 'null');
+    return JSON.parse(localStorage.getItem('Favorited_Movies') || '');
   }
 }

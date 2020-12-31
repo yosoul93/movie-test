@@ -8,12 +8,12 @@ import { takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-movie-details',
-  templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.scss'],
+  selector: 'app-movie-detail',
+  templateUrl: './movie-detail.component.html',
+  styleUrls: ['./movie-detail.component.scss'],
   animations: Animations,
 })
-export class MovieDetailsComponent implements OnInit, OnDestroy {
+export class MovieDetailComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
   movieDetails!: MovieDetails;
