@@ -5,7 +5,7 @@ import { catchError, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HeaderUtils } from 'src/app/shared/utils/header-utils';
 import { SearchMovies } from 'src/app/shared/models/search-movies.interface';
-import { MovieDetails } from 'src/app/shared/models/movie-details.interface';
+import { MovieDetail } from 'src/app/shared/models/movie-detail.interface';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable()
@@ -13,7 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class MovieService {
   
   storeSearchInput: string = '';
-  moviesFavoritedList: MovieDetails[] = this.getFavoritedMovie() || [];
+  moviesFavoritedList: MovieDetail[] = this.getFavoritedMovie() || [];
   isPageReload: boolean = false;
   previousNavigationUrl: string = '';
   currentNavigationUrl: string = '/movies';
@@ -50,9 +50,9 @@ export class MovieService {
       );
   }
 
-  getMovieDetails(id: string): Observable <any> {
+  getMovieDetail(id: string): Observable <any> {
     const url = `${environment.url}movie/${id}?api_key=${environment.apiKey}`;
-    return this._httpClient.get<MovieDetails>(url, { headers: HeaderUtils.appendAuthorizationHeader()})
+    return this._httpClient.get<MovieDetail>(url, { headers: HeaderUtils.appendAuthorizationHeader()})
       .pipe(
         tap(res => res),
         catchError(error => {
@@ -62,13 +62,13 @@ export class MovieService {
       );
   }
   
-  addFavoriteMovie(movie: MovieDetails): void {
+  addFavoriteMovie(movie: MovieDetail): void {
     this.moviesFavoritedList.push(movie);
     this.saveFavoritedList();
   }
 
-  deleteFavoriteMovie(movie: MovieDetails): void {
-    const index = this.moviesFavoritedList.indexOf(movie);
+  deleteFavoriteMovie(movieId: number): void {
+    const index = this.moviesFavoritedList.map(x => x.id).indexOf(movieId);
     this.moviesFavoritedList.splice(index, 1);
     this.saveFavoritedList();
   }
@@ -79,11 +79,11 @@ export class MovieService {
 
   // We are using localstorage to store and retrieve Favorited Movie
 
-  setFavoritedMovie(key: string, movie: MovieDetails[]): void {
+  setFavoritedMovie(key: string, movie: MovieDetail[]): void {
     localStorage.setItem(key, JSON.stringify(movie));
   }
 
-  getFavoritedMovie(): MovieDetails[] {
+  getFavoritedMovie(): MovieDetail[] {
     return JSON.parse(localStorage.getItem('Favorited_Movies') || 'null');
   }
 }

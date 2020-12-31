@@ -15,14 +15,14 @@
           </button>
     
           <div class="image" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-            <img *ngIf="movieDetails.poster_path" [src]="imgUrl+movieDetails.poster_path">
-            <img *ngIf="!movieDetails.poster_path" [src]="'assets/images/no-image.jpg'">
+            <img *ngIf="movieDetail.poster_path" [src]="imgUrl+movieDetail.poster_path">
+            <img *ngIf="!movieDetail.poster_path" [src]="'assets/images/no-image.jpg'">
           </div>
     
           <div class="wrap-header-text" fxLayout="column" fxLayoutAlign="start start"
             [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
             <div class="header-text">
-              <span class="">{{movieDetails.title}}</span>
+              <span class="">{{movieDetail.title}}</span>
             </div>
             <div class="movie-list-text">
               <span>{{_movieService.previousNavigationUrl || 'movies'}}</span>
@@ -37,28 +37,28 @@
     
           <div>
             <img mat-card-imag class="image" 
-              *ngIf="movieDetails?.poster_path" 
-              [src]="imgUrl+movieDetails.poster_path">
+              *ngIf="movieDetail?.poster_path" 
+              [src]="imgUrl+movieDetail.poster_path">
             <img mat-card-imag class="image" 
-              *ngIf="!movieDetails?.poster_path" 
+              *ngIf="!movieDetail?.poster_path" 
               [src]="'assets/images/no-image.jpg'" />
           </div>
 
           <div class="wrap-content-text">
             <mat-card-subtitle>
-              <span *ngFor="let genre of movieDetails.genres" > 
-                {{ genre['name'] ? genre['name']  : '-' }},
+              <span *ngFor="let genre of movieDetail.genres" > 
+                {{ genre['name'] || '-' }},
               </span>|
 
-              <span *ngFor="let spokenLanguage of movieDetails.spoken_languages"> 
-                {{ spokenLanguage['name'] ? spokenLanguage['name'] : '-' }},
+              <span *ngFor="let spokenLanguage of movieDetail.spoken_languages"> 
+                {{ spokenLanguage['name'] || '-' }},
               </span>|
 
-              <span *ngIf="movieDetails?.release_date"> {{ movieDetails?.release_date }} </span>
+              <span *ngIf="movieDetail?.release_date"> {{ movieDetail?.release_date }} </span>
               
               (
-                <span *ngFor="let productionCountry of movieDetails.production_countries"> 
-                  {{ productionCountry['name'] ? productionCountry['name'] : '-' }},
+                <span *ngFor="let productionCountry of movieDetail.production_countries"> 
+                  {{ productionCountry['name'] || '-' }},
                 </span>
               )
               
@@ -66,43 +66,45 @@
             <table>
               <tr>
                 <th>Vote Count</th>
-                <td>{{ movieDetails.vote_count ? movieDetails.vote_count : '-' }}</td>
+                <td>{{ movieDetail.vote_count || '-' }}</td>
               </tr>
   
               <tr>
                 <th>Popularity</th>
-                <td>{{movieDetails.popularity ?  movieDetails.popularity : '-' }}</td>
+                <td>{{movieDetail.popularity || '-' }}</td>
               </tr>
   
               <tr>
                 <th>Title</th>
-                <td>{{movieDetails.title ? movieDetails.title : '-' }}</td>
+                <td>{{movieDetail.title || '-' }}</td>
               </tr>
 
               <tr>
                 <th>Homepage</th>
-                <td>{{movieDetails.homepage ? movieDetails.homepage : '-' }}</td>
+                <td>{{movieDetail.homepage || '-' }}</td>
               </tr>
   
               <tr>
                   <th>Production Company</th>
                   <td>
-                    <span *ngFor="let productionCompany of movieDetails.production_companies">{{ productionCompany['name'] }},</span>
+                    <span *ngIf="movieDetail.production_companies.length<1">-</span>
+                    <span *ngFor="let productionCompany of movieDetail.production_companies">{{ productionCompany['name'] || '-' }},</span>
                   </td>
               </tr>
   
               <tr>
                 <th>Production Countries</th>
                 <td>
-                  <span *ngFor="let productionCountries of movieDetails.production_companies">{{ productionCountries['name'] }},</span>
+                  <span *ngIf="movieDetail.production_countries.length<1">-</span>
+                  <span *ngFor="let productionCountries of movieDetail.production_countries">{{ productionCountries['name'] }},</span>
                 </td>
               </tr>
   
               <tr>
                 <th>Overview</th>
-                <td>{{movieDetails.overview}}</td>
+                <td>{{movieDetail.overview || '-'}}</td>
               </tr>
-              <button mat-icon-button class="favorite-btn" (click)="toggleFavorited()">
+              <button mat-icon-button class="favorite-btn" (click)="toggleFavoriteBtn()">
 
                 <mat-icon
                   *ngIf="isFavorited"

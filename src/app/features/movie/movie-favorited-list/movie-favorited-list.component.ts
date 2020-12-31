@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Animations } from 'src/app/shared/animations';
-import { MovieDetails } from 'src/app/shared/models/movie-details.interface';
+import { MovieDetail } from 'src/app/shared/models/movie-detail.interface';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { MovieService } from '../movie.service';
 export class MovieFavoritedListComponent implements OnInit {
   
   animationDirection!: string;
-  moviesFavoritedList: MovieDetails[] = [];
+  moviesFavoritedList: MovieDetail[] = [];
   
   constructor(
     public _movieService: MovieService,

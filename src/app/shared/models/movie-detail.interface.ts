@@ -1,4 +1,4 @@
-export interface MovieDetails {
+export interface MovieDetail {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: object;

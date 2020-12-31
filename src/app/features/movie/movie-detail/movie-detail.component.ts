@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { ActivatedRoute } from '@angular/router';
-import { MovieDetails } from 'src/app/shared/models/movie-details.interface';
+import { MovieDetail } from 'src/app/shared/models/movie-detail.interface';
 import { Animations } from 'src/app/shared/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   animationDirection: string = 'left';
   loading: boolean = true;
-  movieDetails!: MovieDetails;
+  movieDetail!: MovieDetail;
   imgUrl: string = environment.imgUrl;
   isFavorited!: boolean;
   
@@ -32,32 +32,28 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this._movieService.getMovieDetails(params['id'])
-        .subscribe((details: MovieDetails) => {
+      this._movieService.getMovieDetail(params['id'])
+        .subscribe((details: MovieDetail) => {
           takeUntil(this._unsubscribeAll),
-          this.movieDetails = details;
+          this.movieDetail = details;
           this.loading = false;
-          this.checkIsFavorite(this.movieDetails, this._movieService.moviesFavoritedList);
+          // set favorite movie on Page Init
+          for (let movieFavorite of this._movieService.moviesFavoritedList) {
+            if (movieFavorite.id === this.movieDetail.id) {
+              this.isFavorited = true;
+            }
+          }
         });
     });
   }
 
-  toggleFavorited(): void  {
+  toggleFavoriteBtn(): void  {
     this.isFavorited = !this.isFavorited;
     if(this.isFavorited){
-      this._movieService.addFavoriteMovie(this.movieDetails)
+      this._movieService.addFavoriteMovie(this.movieDetail)
     } else {
-      this._movieService.deleteFavoriteMovie(this.movieDetails)
+      this._movieService.deleteFavoriteMovie(this.movieDetail.id)
     }
-  }
-
-  checkIsFavorite(mvoie: MovieDetails, movieFavoriteList: MovieDetails[]): boolean {
-    for (let x in movieFavoriteList) {
-      if (movieFavoriteList[x].id === mvoie.id) {
-        return this.isFavorited = true;
-      }
-    }
-    return this.isFavorited = false;
   }
 
   ngOnDestroy(): void{
