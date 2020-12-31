@@ -1,4 +1,10 @@
+@import "src/app/shared/scss/themovie";
+
 .wrap-movie-favorited-list {
   max-height: calc(100vh - 100px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include media-breakpoint('xs') {
+    overflow-x: auto;
+  }
 }
