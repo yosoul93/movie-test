@@ -1,0 +1,44 @@
+<div class="wrap-custom-list" fxLayout="row wrap" fxFlex="100">
+
+  <div class="customs" *ngFor="let custom of customs"
+    fxLayout="column" 
+    fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+    <div class="card" fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+      <div class="image">
+        <img *ngIf="custom.poster_path" [src]="imgUrl+custom.poster_path" />
+        <img *ngIf="!custom.poster_path" [src]="'assets/images/no-image.jpg'" />
+      </div>
+
+      <div class="content">
+        <a class="header" *ngIf="custom.title.length < 25">
+          {{ custom.title }}
+        </a>
+        <a class="header"  *ngIf="custom.title.length > 25">
+          {{ custom.title.slice(0,22) }}...
+        </a>
+        <div *ngIf="custom.overview.length < 95" class="description">
+          {{ custom.overview }}
+        </div>
+        <div *ngIf="custom.overview.length > 95" class="description">
+          {{ custom.overview.slice(0,95) }}...
+        </div>
+      </div>
+
+      <a [routerLink]="['/movies/detail', custom.id]" class="extra">
+        
+        <div class="wrap-date">
+          <span>{{ custom.release_date | date:'mediumDate' }}</span>
+        </div>
+
+        <button mat-button class="detail-btn">
+          <mat-icon>arrow_right_alt</mat-icon>
+          Details
+        </button>
+        
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,5 @@
-<p>movie-favorited-list works!</p>
+<div class="wrap-movie-favorited-list" [@.disabled]="_movieService.isPageReload">
+  <div [@slideInLeft]>
+    <app-custom-list [customs]="moviesFavoritedList"></app-custom-list>
+  </div>
+</div>

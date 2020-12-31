@@ -7,6 +7,7 @@ import { MovieListComponent } from './movie/movie-list/movie-list.component';
 import { MovieComponent } from './movie/movie.component';
 import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
 import { MovieFavoritedListComponent } from './movie/movie-favorited-list/movie-favorited-list.component';
+import { CustomListComponent } from './movie/custom-list/custom-list.component';
 
 @NgModule({
   imports: [FeaturesRoutingModule,SharedModule],
@@ -14,7 +15,7 @@ import { MovieFavoritedListComponent } from './movie/movie-favorited-list/movie-
     SearchInputComponent,
     MovieListComponent,
     MovieComponent, 
-    MovieDetailComponent, MovieFavoritedListComponent
+    MovieDetailComponent, MovieFavoritedListComponent, CustomListComponent
   ],
   providers: [MovieService]
 })
