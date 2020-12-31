@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "themovie"
+  "defaultProject": "themovie",
+  "cli": {
+    "analytics": "97e32489-fbd6-484d-8b7b-0dbf6f70450e"
+  }
 }
