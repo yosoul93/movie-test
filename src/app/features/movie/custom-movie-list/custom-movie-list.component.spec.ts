@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomMovieListComponent } from './custom-list.component';
+import { CustomMovieListComponent } from './custom-movie-list.component';
 
 describe('CustomMovieListComponent', () => {
   let component: CustomMovieListComponent;
