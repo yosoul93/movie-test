@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomListComponent } from './custom-list.component';
+import { CustomMovieListComponent } from './custom-list.component';
 
-describe('CustomListComponent', () => {
-  let component: CustomListComponent;
-  let fixture: ComponentFixture<CustomListComponent>;
+describe('CustomMovieListComponent', () => {
+  let component: CustomMovieListComponent;
+  let fixture: ComponentFixture<CustomMovieListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomListComponent ]
+      declarations: [ CustomMovieListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomListComponent);
+    fixture = TestBed.createComponent(CustomMovieListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
