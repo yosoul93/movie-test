@@ -1,0 +1,28 @@
+@import "src/app/shared/scss/themovie";
+
+.wrap-search-input {
+  margin-bottom: 20px;
+
+  .center-input {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 65%;
+    @include media-breakpoint('lt-md') {
+      width: 52.5%;
+    }
+
+    .hold-input {
+      display: flex;
+      
+      input {
+        flex: 1 0 auto;
+        line-height: 1.5em;
+        padding: 1em;
+        border: 1px solid rgba(18, 28, 41, 0.15);
+        border-radius: .5rem;
+      }
+    }
+  }
+}
