@@ -1,0 +1,26 @@
+.wrap-movie {
+
+  .wrap-not-found {
+    margin: 3rem;
+    text-align: center;
+
+    .not-found-text {
+      font-size: 40px;
+    }
+
+    mat-icon {    
+      position: relative;
+      margin-right: 30px;
+      top: 6px;
+      font-size: 40px;
+    }
+  }
+
+  .wrap-loading {
+    margin: 3rem;
+    
+    mat-spinner {    
+      margin: 0 auto;
+    }
+  }
+}
