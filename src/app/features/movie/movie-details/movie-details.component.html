@@ -1,0 +1,127 @@
+<div class="movie-details">
+  
+  <div *ngIf="loading" class="wrap-loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div [@slideInLeft]>
+    <div *ngIf="!loading">
+    
+      <div class="header">
+        <a class="header-link" [routerLink]="'/movie'" >
+    
+          <button mat-icon-button class="arrow-back-icon">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+    
+          <div class="image" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+            <img *ngIf="movieDetails.poster_path" [src]="imgUrl+movieDetails.poster_path">
+            <img *ngIf="!movieDetails.poster_path" [src]="'assets/images/no-image.jpg'">
+          </div>
+    
+          <div class="wrap-header-text" fxLayout="column" fxLayoutAlign="start start"
+            [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+            <div class="header-text">
+              <span class="">{{movieDetails.title}}</span>
+            </div>
+            <div class="movie-list-text">
+              <span>Movie List</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="content p-24">
+
+        <div class="content-details">
+    
+          <div>
+            <img mat-card-imag class="image" 
+              *ngIf="movieDetails?.poster_path" 
+              [src]="imgUrl+movieDetails.poster_path">
+            <img mat-card-imag class="image" 
+              *ngIf="!movieDetails?.poster_path" 
+              [src]="'assets/images/no-image.jpg'" />
+          </div>
+
+          <div class="wrap-content-text">
+            <mat-card-subtitle>
+              <span *ngFor="let genre of movieDetails.genres" > 
+                {{ genre['name'] ? genre['name']  : '-' }},
+              </span>|
+
+              <span *ngFor="let spokenLanguage of movieDetails.spoken_languages"> 
+                {{ spokenLanguage['name'] ? spokenLanguage['name'] : '-' }},
+              </span>|
+
+              <span *ngIf="movieDetails?.release_date"> {{ movieDetails?.release_date }} </span>
+              
+              (
+                <span *ngFor="let productionCountry of movieDetails.production_countries"> 
+                  {{ productionCountry['name'] ? productionCountry['name'] : '-' }},
+                </span>
+              )
+              
+            </mat-card-subtitle>
+            <table>
+              <tr>
+                <th>Vote Count</th>
+                <td>{{ movieDetails.vote_count ? movieDetails.vote_count : '-' }}</td>
+              </tr>
+  
+              <tr>
+                <th>Popularity</th>
+                <td>{{movieDetails.popularity ?  movieDetails.popularity : '-' }}</td>
+              </tr>
+  
+              <tr>
+                <th>Title</th>
+                <td>{{movieDetails.title ? movieDetails.title : '-' }}</td>
+              </tr>
+
+              <tr>
+                <th>Homepage</th>
+                <td>{{movieDetails.homepage ? movieDetails.homepage : '-' }}</td>
+              </tr>
+  
+              <tr>
+                  <th>Production Company</th>
+                  <td>
+                    <span *ngFor="let productionCompany of movieDetails.production_companies">{{ productionCompany['name'] }},</span>
+                  </td>
+              </tr>
+  
+              <tr>
+                <th>Production Countries</th>
+                <td>
+                  <span *ngFor="let productionCountries of movieDetails.production_companies">{{ productionCountries['name'] }},</span>
+                </td>
+              </tr>
+  
+              <tr>
+                <th>Overview</th>
+                <td>{{movieDetails.overview}}</td>
+              </tr>
+              <button mat-icon-button class="favorite-btn" (click)="toggleFavorited()">
+
+                <mat-icon
+                  *ngIf="isFavorited"
+                  aria-label="icon-button">
+                  favorite
+                </mat-icon>
+              
+                <mat-icon
+                  *ngIf="!isFavorited"
+                  aria-label="icon-button">
+                  favorite_border
+                </mat-icon>
+              
+              </button>
+            </table>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>

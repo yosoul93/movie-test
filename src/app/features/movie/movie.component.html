@@ -2,5 +2,14 @@
 
   <app-search-input (search)="handleSearch($event)"></app-search-input>
   
+  <div *ngIf="inputTouched && !loading && !movies.length" class="wrap-not-found">
+    <mat-icon>warning</mat-icon>
+    <span class="not-found-text">No Video Found</span>
+  </div>
+
+  <div *ngIf="loading" class="wrap-loading">
+    <mat-spinner></mat-spinner>
+  </div>
   
+  <app-movie-list *ngIf="!loading" [movies]="movies"></app-movie-list>
 </div>

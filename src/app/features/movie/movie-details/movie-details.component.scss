@@ -1,0 +1,108 @@
+@import "src/app/shared/scss/themovie";
+
+.movie-details {
+  
+  .wrap-loading {
+    margin: 3rem;
+    
+    mat-spinner {    
+      margin: 0 auto;
+    }
+  }
+
+  .header {
+    cursor: pointer;
+
+    .header-link {
+      text-decoration: none;
+      color: black;
+      .arrow-back-icon {
+        position: relative;
+        bottom: 20px;
+      }
+  
+      .image {
+        overflow: hidden;
+        display: inline-flex;
+        width: 56px;
+        height: 56px;
+        border-radius: 4px;
+  
+        img {
+          height: 100%;
+          width: auto;
+          max-width: none;
+        }
+      }
+  
+      .wrap-header-text {
+        position: relative;
+        bottom: 10px;
+        display: inline-block;
+
+        .header-text {
+          display: inline-flex;
+
+          span {
+            font-size: 20px;
+          }
+        }
+
+        .movie-list-text {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+
+    .content-details {
+      display: inline-flex;
+
+      @include media-breakpoint('lt-md') {
+       display: block;
+       overflow-y: scroll;
+       height: calc(90vh - 100px);
+       text-align: center;
+      }
+
+      .image {
+        @include media-breakpoint('lt-md') {
+          padding-bottom: 20px;
+        }
+      }
+
+      .wrap-content-text {
+        padding-left: 5rem;
+
+        .title {
+          padding: 16px 0;
+        }
+  
+        table {
+          width: 100%;
+          text-align: left;
+  
+          tr {
+  
+            th, td {
+              padding: 16px 10px;
+            }
+          }
+
+          .favorite-btn {
+            mat-icon {
+              font-size: 50px;
+              color: red;;
+            }
+          }
+         
+        }
+
+      }
+
+    }
+  }
+}
