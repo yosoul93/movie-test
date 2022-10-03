@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from './movie.service';
-import { Movie } from 'src/app/shared/models/movie.interface';
+import { Movie } from 'src/app/shared/models/movie.type';
 import { Animations } from 'src/app/shared/animations';
 
 @Component({

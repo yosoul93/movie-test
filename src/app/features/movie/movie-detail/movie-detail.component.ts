@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { ActivatedRoute } from '@angular/router';
-import { MovieDetail } from 'src/app/shared/models/movie-detail.interface';
+import { MovieDetail } from 'src/app/shared/models/movie-detail.type';
 import { Animations } from 'src/app/shared/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

@@ -1,6 +1,6 @@
-import { Movie } from './movie.interface';
+import { Movie } from './movie.type';
 
-export interface SearchMovies {
+export type SearchMovies = {
   page: number;
   results: Movie[];
   total_pages: number;

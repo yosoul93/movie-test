@@ -4,8 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HeaderUtils } from 'src/app/shared/utils/header-utils';
-import { SearchMovies } from 'src/app/shared/models/search-movies.interface';
-import { MovieDetail } from 'src/app/shared/models/movie-detail.interface';
+import { SearchMovies } from 'src/app/shared/models/search-movies.type';
+import { MovieDetail } from 'src/app/shared/models/movie-detail.type';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable()

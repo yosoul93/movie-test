@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from 'src/app/shared/models/movie.interface'
+import { Movie } from 'src/app/shared/models/movie.type'
 
 @Component({
   selector: 'app-movie-list',
