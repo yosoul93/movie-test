@@ -8,7 +8,7 @@ import { Movie } from 'src/app/shared/models/movie.type'
 })
 export class MovieListComponent implements OnInit {
 
-  @Input() movieList!: Movie[];
+  @Input() public movieList!: Movie[];
 
   constructor(
   ) { }

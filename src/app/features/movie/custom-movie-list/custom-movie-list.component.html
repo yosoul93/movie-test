@@ -13,17 +13,17 @@
       </div>
 
       <div class="content">
-        <a class="header" *ngIf="movie.title.length < 25">
+        <a class="header" *ngIf="movie.title.length < minStrLen">
           {{ movie.title }}
         </a>
-        <a class="header"  *ngIf="movie.title.length > 25">
-          {{ movie.title.slice(0,22) }}...
+        <a class="header"  *ngIf="movie.title.length > minStrLen">
+          {{ movie.title.slice(0,minStrLen) }}...
         </a>
-        <div *ngIf="movie.overview.length < 95" class="description">
+        <div *ngIf="movie.overview.length < maxStrLen" class="description">
           {{ movie.overview }}
         </div>
-        <div *ngIf="movie.overview.length > 95" class="description">
-          {{ movie.overview.slice(0,95) }}...
+        <div *ngIf="movie.overview.length > maxStrLen" class="description">
+          {{ movie.overview.slice(0,maxStrLen) }}...
         </div>
       </div>
 

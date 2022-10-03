@@ -13,8 +13,8 @@ import { MovieService } from '../movie.service';
 
 export class SearchInputComponent implements AfterViewInit, OnDestroy {
 
-  @ViewChild('input') inputElement!: ElementRef<HTMLInputElement>;
-  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @ViewChild('input') public inputElement!: ElementRef<HTMLInputElement>;
+  @Output() public readonly search: EventEmitter<string> = new EventEmitter<string>();
 
   // Private
   private _unsubscribeAll: Subject<any>;

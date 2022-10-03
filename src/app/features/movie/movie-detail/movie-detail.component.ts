@@ -15,11 +15,11 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
 
-  animationDirection: string = 'left';
-  loading: boolean = true;
-  movieDetail!: MovieDetail;
-  imgUrl: string = environment.imgUrl;
-  isFavorited!: boolean;
+  public animationDirection: string = 'left';
+  public loading: boolean = true;
+  public movieDetail!: MovieDetail;
+  public readonly imgUrl: string = environment.imgUrl;
+  public isFavorited!: boolean;
   
   private _unsubscribeAll: Subject<any>;
   
@@ -46,6 +46,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
         });
     });
   }
+  
 
   toggleFavoriteBtn(): void  {
     this.isFavorited = !this.isFavorited;

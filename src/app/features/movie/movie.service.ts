@@ -12,11 +12,11 @@ import { NavigationEnd, Router } from '@angular/router';
 
 export class MovieService {
   
-  storeSearchInput: string = '';
-  moviesFavoritedList: MovieDetail[] = this.getFavoritedMovie() || [];
-  isPageReload: boolean = false;
-  previousNavigationUrl: string = '';
-  currentNavigationUrl: string = '/movies';
+  public storeSearchInput: string = '';
+  public moviesFavoritedList: MovieDetail[] = this.getFavoritedMovie() || [];
+  public isPageReload: boolean = false;
+  public previousNavigationUrl: string = '';
+  public currentNavigationUrl: string = '/movies';
 
   constructor(
     private _httpClient: HttpClient,

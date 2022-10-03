@@ -8,8 +8,10 @@ import { environment } from 'src/environments/environment';
 })
 export class CustomMovieListComponent implements OnInit {
 
-  @Input() movies!: any[];
-  imgUrl: string = environment.imgUrl;
+  @Input() public movies!: any[];
+  public readonly imgUrl: string = environment.imgUrl;
+  public readonly minStrLen: number = 25;
+  public readonly maxStrLen: number = 95;
   
   constructor() { }
 

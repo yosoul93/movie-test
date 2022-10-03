@@ -11,8 +11,8 @@ import { MovieService } from '../movie.service';
 })
 export class MovieFavoritedListComponent implements OnInit {
   
-  animationDirection!: string;
-  moviesFavoritedList: MovieDetail[] = [];
+  public animationDirection!: string;
+  public moviesFavoritedList: MovieDetail[] = [];
   
   constructor(
     public _movieService: MovieService,
